@@ -18,7 +18,16 @@ public class BonusScore implements GameScore{
     */   
     @Override 
     public int calculateScore(int correctCount, int incorrectCount) throws HangmanException{
-        return 0;        
+        int score = 0;
+	if (incorrectCount < 0 || correctCount < 0){
+		throw new HangmanException(HangmanException.PARAMETROS_INVALIDOS);
+	} else if ((5 * incorrectCount) <= 10 * correctCount){
+		score = (correctCount * 10) - (incorrectCount* 5);
+	} else if ((2 * incorrectCount) > incorrectCount){
+		score = 0;
+	}
+	System.out.println(score);
+	return score;        
     }
     
 }
